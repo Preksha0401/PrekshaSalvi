@@ -13,7 +13,8 @@ const chips = ["help", "whoami", "skills", "projects", "contact", "clear"];
 
 const Terminal = () => {
   const [output, setOutput] = useState<Array<{ type: string; text: string }>>([
-    { type: "info", text: "Welcome to Preksha's shell. Type 'help' to begin." },
+    { type: "info", text: "Welcome! Try typing a command." },
+    { type: "info", text: "Start with help" },
   ]);
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -30,7 +31,7 @@ const Terminal = () => {
     const result = commands[trimmed];
     setOutput((prev) => [
       ...prev,
-      { type: "cmd", text: `visitor@preksha ~ $ ${cmd}` },
+      { type: "cmd", text: `visitor:~$ ${cmd}` },
       { type: result ? "result" : "error", text: result || `Command not found: ${trimmed}. Type 'help'.` },
     ]);
     setInput("");
@@ -42,140 +43,75 @@ const Terminal = () => {
   }, [output]);
 
   return (
-    <section id="terminal" className="py-24 relative overflow-hidden">
-      {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full opacity-10 blur-[100px] pointer-events-none" style={{ background: "hsl(186, 100%, 50%)" }} />
-
-      <div className="container max-w-[920px] relative z-10" ref={ref}>
+    <section id="terminal" className="py-24 md:py-32">
+      <div className="container mx-auto max-w-[1200px] px-6 md:px-10" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
         >
-          <div className="text-center mb-10">
-            <div className="section-eyebrow mb-3 justify-center">Interactive Shell</div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight" style={{ fontFamily: "var(--font-display)" }}>
-              Try the <em className="not-italic gradient-text">Terminal</em>
-            </h2>
-          </div>
+          <div className="section-eyebrow mb-3">Preksha Shell</div>
+          <h2 className="section-title mb-8">
+            Try the <em>Terminal</em>
+          </h2>
 
-          {/* Terminal frame */}
           <div
-            className="rounded-2xl overflow-hidden relative"
-            style={{
-              background: "hsla(260, 40%, 6%, 0.9)",
-              border: "1px solid hsla(186, 100%, 50%, 0.12)",
-              boxShadow: "0 24px 80px hsla(260, 60%, 5%, 0.6), 0 0 60px hsla(186, 100%, 50%, 0.06), inset 0 1px 0 hsla(186, 100%, 50%, 0.05)",
-              backdropFilter: "blur(24px)",
-            }}
+            className="glass-panel overflow-hidden rounded-[28px]"
+            style={{ boxShadow: "0 16px 60px hsla(306,55%,33%,0.16)" }}
           >
-            {/* Top bar */}
             <div
-              className="flex items-center gap-2 px-5 py-3.5"
-              style={{
-                background: "hsla(260, 40%, 8%, 0.95)",
-                borderBottom: "1px solid hsla(186, 100%, 50%, 0.08)",
-              }}
+              className="flex items-center gap-[7px] px-5 py-4"
+              style={{ background: "hsla(260,40%,10%,0.8)" }}
             >
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full" style={{ background: "#ff5f57" }} />
-                <div className="w-3 h-3 rounded-full" style={{ background: "#febc2e" }} />
-                <div className="w-3 h-3 rounded-full" style={{ background: "#28c840" }} />
-              </div>
-              <div className="flex-1 text-center">
-                <span className="font-mono text-[11px] tracking-wider" style={{ color: "hsla(186, 100%, 60%, 0.5)" }}>
-                  preksha@portfolio:~
-                </span>
-              </div>
-              <div className="w-[52px]" />
+              <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+              <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+              <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+              <span className="ml-auto font-mono text-[12px] text-muted-foreground opacity-40">
+                preksha@portfolio ~
+              </span>
             </div>
 
-            {/* Terminal body */}
             <div
               id="term-output"
-              className="px-6 py-5 min-h-[300px] max-h-[420px] overflow-y-auto font-mono text-[13px] leading-[2]"
-              style={{ fontFamily: "var(--font-mono)" }}
+              className="p-6 md:p-8 min-h-[360px] max-h-[500px] overflow-y-auto font-mono text-[14px] md:text-[15px] leading-[1.9]"
             >
               {output.map((line, i) => (
                 <div
                   key={i}
-                  className="whitespace-pre-wrap"
-                  style={{
-                    color:
-                      line.type === "cmd" ? "hsl(186, 100%, 60%)" :
-                      line.type === "error" ? "#ff7070" :
-                      line.type === "info" ? "hsla(186, 100%, 60%, 0.4)" :
-                      "hsla(38, 33%, 93%, 0.85)",
-                  }}
+                  className={
+                    line.type === "cmd"
+                      ? "text-accent"
+                      : line.type === "error"
+                      ? "text-[#ff7070]"
+                      : line.type === "info"
+                      ? "text-muted-foreground"
+                      : "text-foreground whitespace-pre-wrap"
+                  }
                 >
                   {line.text}
                 </div>
               ))}
 
-              {/* Input line */}
-              <div className="flex items-center gap-2 mt-1">
-                <span style={{ color: "hsl(160, 70%, 55%)" }} className="font-mono text-[13px]">
-                  visitor@preksha
-                </span>
-                <span style={{ color: "hsla(186, 100%, 60%, 0.4)" }}>~</span>
-                <span style={{ color: "hsla(38, 33%, 93%, 0.5)" }}>$</span>
+              <div className="flex items-center gap-[7px] mt-2">
+                <span className="text-accent">visitor:~$</span>
                 <input
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && input.trim() && runCmd(input)}
-                  className="flex-1 bg-transparent border-none outline-none font-mono text-[13px]"
-                  style={{ color: "hsl(var(--foreground))", fontFamily: "var(--font-mono)" }}
-                  placeholder="type a command..."
+                  className="flex-1 bg-transparent border-none outline-none text-foreground font-mono text-[14px] md:text-[15px]"
+                  placeholder="type here..."
                   autoComplete="off"
                   spellCheck={false}
                 />
-                <span className="type-cursor" />
               </div>
-            </div>
-
-            {/* Footer status bar */}
-            <div
-              className="flex items-center justify-between px-5 py-2.5 font-mono text-[10px] tracking-wider"
-              style={{
-                background: "hsla(260, 40%, 8%, 0.95)",
-                borderTop: "1px solid hsla(186, 100%, 50%, 0.08)",
-                color: "hsla(186, 100%, 60%, 0.35)",
-              }}
-            >
-              <span>bash — 80×24</span>
-              <span>UTF-8</span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full" style={{ background: "hsl(160, 70%, 55%)" }} />
-                connected
-              </span>
             </div>
           </div>
 
-          {/* Command chips */}
-          <div className="flex gap-2 flex-wrap mt-5 justify-center">
+          <div className="flex gap-3 flex-wrap mt-4">
             {chips.map((c) => (
-              <button
-                key={c}
-                onClick={() => runCmd(c)}
-                className="text-[11px] tracking-wider px-4 py-2 rounded-full font-medium transition-all duration-300 hover:-translate-y-0.5 hoverable"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  background: "hsla(186, 100%, 50%, 0.06)",
-                  border: "1px solid hsla(186, 100%, 50%, 0.15)",
-                  color: "hsl(186, 100%, 60%)",
-                  boxShadow: "0 2px 12px hsla(186, 100%, 50%, 0.06)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "hsla(186, 100%, 50%, 0.12)";
-                  e.currentTarget.style.boxShadow = "0 4px 20px hsla(186, 100%, 50%, 0.12)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "hsla(186, 100%, 50%, 0.06)";
-                  e.currentTarget.style.boxShadow = "0 2px 12px hsla(186, 100%, 50%, 0.06)";
-                }}
-              >
-                {`> ${c}`}
+              <button key={c} onClick={() => runCmd(c)} className="tag-pill text-[12px] md:text-[13px] hoverable">
+                {c}
               </button>
             ))}
           </div>

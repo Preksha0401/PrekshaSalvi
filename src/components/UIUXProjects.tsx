@@ -1,57 +1,98 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import mindicator from "@/assets/uiux-indicator.png";
+import stayease from "@/assets/stayease.jpg";
+import shopping from "@/assets/shopping.jpg";
 
-const uxProjects = [
-  { cat: "Dashboard UI", title: "Indicator App Design", desc: "A data-rich analytics dashboard with KPI cards, clean visualizations, and intuitive navigation.", tags: ["Figma", "Dashboard", "Data Viz"], gradient: "linear-gradient(135deg, hsl(252,42%,25%), hsl(306,55%,33%), hsl(316,65%,60%))" },
-  { cat: "E-Commerce UI", title: "Shopping App Interface", desc: "A modern e-commerce UI with product grids, cart flow, and checkout — frictionless UX.", tags: ["Figma", "E-Commerce", "User Flow"], gradient: "linear-gradient(135deg, hsl(230,40%,23%), hsl(252,42%,25%), hsl(260,50%,70%))" },
-  { cat: "Mobile UI", title: "Mobile App Concepts", desc: "Interface concepts for iOS/Android — micro-interactions, onboarding, and gesture-based nav.", tags: ["Mobile", "iOS/Android", "Interaction Design"], gradient: "linear-gradient(135deg, hsl(280,50%,20%), hsl(306,55%,33%), hsl(316,65%,60%))" },
+
+const projects = [
+  {
+    title: "m-Indicator Redesign",
+    subtitle: "Mobile App Redesign",
+    desc: "A UX-led redesign of Mumbai's most-used transit app — simplifying cluttered navigation, modernising the visual language, and reducing the steps needed to find a train route. Focused on commuter-first hierarchy and one-thumb usability.",
+    image: mindicator,
+    device: "mobile",
+    tags: ["Figma", "UX Audit", "Redesign", "Mobile", "Navigation"],
+    links: [
+      { label: "Figma", href: "#" },
+      { label: "Assignment", href: "#" },
+    ],
+  },
+  {
+    title: "ShopLens",
+    subtitle: "E-Commerce Dashboard",
+    desc: "A clean, data-rich admin dashboard for e-commerce sellers — focused on information hierarchy, quick actions, and reducing cognitive load.",
+    image: shopping,
+    device: "laptop",
+    tags: ["Figma", "Dashboard", "Design System", "Wireframing"],
+    links: [{ label: "Figma", href: "#" }, { label: "Project", href: "#" }],
+  },
+  {
+    title: "WanderPlan",
+    subtitle: "Travel Planner App",
+    desc: "An intuitive mobile travel planner that helps users build itineraries, discover local gems, and collaborate with fellow travelers.",
+    image: stayease,
+    device: "mobile",
+    tags: ["Figma", "User Research", "Interaction Design", "Travel"],
+    links: [{ label: "Figma", href: "#" }, { label: "Project", href: "#" }],
+  },
 ];
-
-const MockWireframe = ({ variant }: { variant: number }) => (
-  <div className="w-[60%] max-w-[160px] rounded-lg p-3 border" style={{ background: "hsla(255,255,255,0.1)", borderColor: "hsla(255,255,255,0.18)", backdropFilter: "blur(3px)" }}>
-    <div className="h-[5px] rounded bg-foreground/20 mb-2" style={{ width: variant === 0 ? "80%" : variant === 1 ? "60%" : "50%" }} />
-    <div className="h-[5px] rounded mb-2" style={{ width: "60%", background: variant === 0 ? "hsla(316,65%,60%,0.6)" : "hsla(260,50%,70%,0.5)" }} />
-    <div className="flex gap-1 mb-2">
-      <div className="w-7 h-7 rounded bg-foreground/15 flex-shrink-0" />
-      <div className="flex-1 flex flex-col gap-1 justify-center">
-        <div className="h-1 rounded bg-foreground/20" />
-        <div className="h-1 rounded bg-foreground/15 w-[55%]" />
-      </div>
-    </div>
-    <div className="h-[5px] rounded bg-foreground/15" style={{ width: "45%" }} />
-  </div>
-);
-
-const UIUXProjects = () => {
+const ProjectsGrid = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="uiux" className="py-20">
+    <section id="projects" className="py-20">
       <div className="container" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
-          <div className="section-eyebrow mb-2.5">Design Portfolio</div>
-          <h2 className="section-title">UI/UX <em>Projects</em></h2>
+          <div className="section-eyebrow mb-2.5">Featured Work</div>
+          <h2 className="section-title ">Ui Ux <em>Projects</em></h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[22px]">
-          {uxProjects.map((p, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p, i) => (
             <motion.div
               key={p.title}
               initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-panel overflow-hidden group hoverable transition-all duration-300 hover:-translate-y-1"
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              className="glass-panel overflow-hidden group hoverable transition-all duration-300 hover:-translate-y-1.5"
+              style={{ boxShadow: "0 3px 20px hsla(306,55%,33%,0.07)" }}
             >
-              <div className="h-[160px] flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-105" style={{ background: p.gradient }}>
-                <MockWireframe variant={i} />
+              {/* Image — always visible */}
+              <div className="h-[200px] relative overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                {/* Glassmorphism overlay on hover */}
+                <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-all duration-400 translate-y-4 group-hover:translate-y-0"
+                  style={{ background: "linear-gradient(to top, hsla(260,60%,5%,0.9) 0%, hsla(260,60%,5%,0.4) 60%, transparent 100%)", backdropFilter: "blur(6px)" }}>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.tags.map((t) => (
+                      <span key={t} className="font-body text-[10px] tracking-wide px-2.5 py-1 rounded-md border text-foreground"
+                        style={{ background: "hsla(306,55%,33%,0.2)", borderColor: "hsla(306,55%,33%,0.3)" }}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <a href="#" className="mt-2 font-body text-[11px] font-semibold text-accent hover:text-foreground transition-colors hoverable">
+                    View Project →
+                  </a>
+                </div>
               </div>
-              <div className="p-[18px]">
-                <div className="font-body text-[10px] tracking-[2px] uppercase text-accent mb-1">{p.cat}</div>
-                <h4 className="font-display text-base font-bold text-foreground mb-[7px]">{p.title}</h4>
-                <p className="font-body text-[12.5px] text-muted-foreground leading-relaxed mb-3">{p.desc}</p>
-                <div className="flex flex-wrap gap-[5px]">
-                  {p.tags.map((t) => <span key={t} className="tag-pill text-[9px]">{t}</span>)}
+
+              <div className="p-5">
+                <h3 className="font-display text-[25px] font-bold text-foreground mb-2">{p.title}</h3>
+                <p className="font-body text-[15px] text-muted-foreground leading-relaxed mb-3.5">{p.desc}</p>
+                <div className="flex gap-2">
+                  {p.links.map((l) => (
+                    <a key={l.label} href={l.href} className="font-body text-[12px] font-semibold text-accent px-3.5 py-1.5 rounded-md border border-border transition-all duration-200 hover:border-accent hoverable text-[12px] md:text-[13px]"
+                      style={{ background: "hsla(306,55%,33%,0.07)" }}>
+                      {l.label}
+                    </a>
+                  ))}
                 </div>
               </div>
             </motion.div>
@@ -62,4 +103,4 @@ const UIUXProjects = () => {
   );
 };
 
-export default UIUXProjects;
+export default ProjectsGrid;

@@ -47,9 +47,9 @@ const HeroSection = () => {
       </svg>
 
       <div className="relative z-10 flex flex-col items-center gap-4 max-w-[700px] w-full px-5 text-center">
-        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.05, duration: 0.7 }} className="section-eyebrow mb-0">
+        {/* <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.05, duration: 0.7 }} className="section-eyebrow mb-0">
           Full Stack Developer + UI/UX Designer
-        </motion.div>
+        </motion.div> */}
 
         <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.15, duration: 0.7 }} className="font-display italic text-xl md:text-2xl text-muted-foreground">
           Hello, I'm

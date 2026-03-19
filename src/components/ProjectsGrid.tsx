@@ -37,7 +37,7 @@ const ProjectsGrid = () => {
       <div className="container" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
           <div className="section-eyebrow mb-2.5">Featured Work</div>
-          <h2 className="section-title">My <em>Projects</em></h2>
+          <h2 className="section-title ">My <em>Projects</em></h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -75,11 +75,11 @@ const ProjectsGrid = () => {
               </div>
 
               <div className="p-5">
-                <h3 className="font-display text-[17px] font-bold text-foreground mb-2">{p.title}</h3>
-                <p className="font-body text-[13px] text-muted-foreground leading-relaxed mb-3.5">{p.desc}</p>
+                <h3 className="font-display text-[25px] font-bold text-foreground mb-2">{p.title}</h3>
+                <p className="font-body text-[15px] text-muted-foreground leading-relaxed mb-3.5">{p.desc}</p>
                 <div className="flex gap-2">
                   {p.links.map((l) => (
-                    <a key={l.label} href={l.href} className="font-body text-[11.5px] font-semibold text-accent px-3.5 py-1.5 rounded-md border border-border transition-all duration-200 hover:border-accent hoverable"
+                    <a key={l.label} href={l.href} className="font-body text-[12px] font-semibold text-accent px-3.5 py-1.5 rounded-md border border-border transition-all duration-200 hover:border-accent hoverable text-[12px] md:text-[13px]"
                       style={{ background: "hsla(306,55%,33%,0.07)" }}>
                       {l.label}
                     </a>
