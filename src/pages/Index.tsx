@@ -9,9 +9,12 @@ import ProjectsGrid from "@/components/ProjectsGrid";
 import UIUXProjects from "@/components/UIUXProjects";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 const Index = () => (
   <div className="min-h-screen bg-background">
+        <AnimatedBackground />   {/* already there or add above CustomCursor */}
+
     <CurtainWipe />
     <CustomCursor />
     <Navbar />
@@ -24,6 +27,7 @@ const Index = () => (
     <ContactSection />
     <Footer />
   </div>
+  
 );
 
 export default Index;

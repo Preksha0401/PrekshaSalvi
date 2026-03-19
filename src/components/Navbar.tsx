@@ -5,7 +5,7 @@ const links = [
   { label: "Home", href: "#hero" },
   { label: "About", href: "#about" },
   { label: "Terminal", href: "#terminal" },
-  { label: "Journey", href: "#journey" },
+  { label: "Journey", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "UI/UX", href: "#uiux" },
@@ -21,15 +21,19 @@ const Navbar = () => (
     style={{ background: "hsla(260,60%,5%,0.88)", backdropFilter: "blur(22px)" }}
   >
     <a href="#hero" className="flex items-center gap-2.5 no-underline hoverable">
-      <img src={logo} alt="Logo" className="w-10 h-10 object-contain" style={{ filter: "drop-shadow(0 2px 8px hsla(306,55%,33%,0.3))" }} />
-      <span className="font-display text-xl italic gradient-text">Preksha Salvi</span>
+<img
+  src={logo}
+  alt="Logo"
+  className="w-14 h-14 md:w-16 md:h-16 object-contain"
+  style={{ filter: "drop-shadow(0 4px 12px hsla(306,55%,33%,0.4))" }}
+/>      
     </a>
     <ul className="hidden md:flex gap-8 list-none">
       {links.map((l) => (
         <li key={l.href}>
           <a
             href={l.href}
-            className="font-body text-[13px] font-medium tracking-wide text-muted-foreground hover:text-accent transition-colors duration-200 hoverable"
+            className="font-body text-[15px] font-medium tracking-wide text-muted-foreground hover:text-accent transition-colors duration-200 hoverable"
           >
             {l.label}
           </a>

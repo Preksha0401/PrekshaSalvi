@@ -131,7 +131,7 @@ const AboutSection = () => {
                   {" "}
                   Sardar Patel Institute of Technology, Mumbai
                 </strong>{" "}
-                (CSE '27) with a CGPA of 8.00/10. I'm passionate about building
+                (CE '27). I'm passionate about building
                 full-stack applications and crafting intuitive user experiences.
               </p>
 
@@ -149,22 +149,7 @@ const AboutSection = () => {
                 , working with Python's data ecosystem.
               </p>
 
-              <div className="flex flex-wrap gap-3 mt-4">
-                {[
-                  "MERN Stack",
-                  "Java",
-                  "Python",
-                  "Figma",
-                  "React",
-                  "Node.js",
-                  "MongoDB",
-                  "Git",
-                ].map((tag) => (
-                  <span key={tag} className=" tag-pill text-[12px] md:text-[13px]">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              
             </div>
           </div>
 

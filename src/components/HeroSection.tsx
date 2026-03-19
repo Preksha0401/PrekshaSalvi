@@ -36,9 +36,6 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center pt-[68px] relative overflow-hidden">
-      {/* Floating gradient blobs */}
-      <div className="absolute w-[480px] h-[480px] rounded-full top-[-100px] right-[-110px] pointer-events-none animate-pulse opacity-30" style={{ background: "radial-gradient(circle, hsla(306,55%,33%,0.4), transparent 70%)", filter: "blur(90px)" }} />
-      <div className="absolute w-[320px] h-[320px] rounded-full bottom-0 left-[-70px] pointer-events-none animate-pulse opacity-25" style={{ background: "radial-gradient(circle, hsla(186,100%,50%,0.3), transparent 70%)", filter: "blur(90px)", animationDelay: "3s" }} />
 
       {/* Noise overlay */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.03]">
@@ -47,10 +44,6 @@ const HeroSection = () => {
       </svg>
 
       <div className="relative z-10 flex flex-col items-center gap-4 max-w-[700px] w-full px-5 text-center">
-        {/* <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.05, duration: 0.7 }} className="section-eyebrow mb-0">
-          Full Stack Developer + UI/UX Designer
-        </motion.div> */}
-
         <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.15, duration: 0.7 }} className="font-display italic text-xl md:text-2xl text-muted-foreground">
           Hello, I'm
         </motion.div>
