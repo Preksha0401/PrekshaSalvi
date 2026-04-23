@@ -3,12 +3,9 @@ import logo from "@/assets/logo.png";
 
 const links = [
   { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Terminal", href: "#terminal" },
   { label: "Journey", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "UI/UX", href: "#uiux" },
   { label: "Contact", href: "#contact" },
 ];
 

@@ -1,23 +1,26 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 import stayease from "@/assets/project-stayease.jpg";
 import braintumor from "@/assets/project-braintumor.jpg";
 import reciperoute from "@/assets/project-reciperoute.jpg";
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"></link>
 
 const projects = [
-  {
-    title: "StayEase",
-    desc: "A full-featured stay booking web app with property listings, real-time availability, and secure auth — built on the MERN stack.",
-    image: stayease,
-    tags: ["MongoDB", "Express", "React", "Node.js"],
-    links: [{ label: "GitHub", href: "#" }, { label: "Live", href: "#" }],
-  },
   {
     title: "Brain Tumor Detection",
     desc: "AI-powered medical imaging using deep learning (CNN) to detect and classify brain tumors from MRI scans with high accuracy.",
     image: braintumor,
     tags: ["Python", "TensorFlow", "CNN", "OpenCV"],
     links: [{ label: "GitHub", href: "#" }, { label: "Demo", href: "#" }],
+    detailLink: "/brain-tumor-detection",
+  },
+  {
+    title: "StayEase",
+    desc: "A full-featured stay booking web app with property listings, real-time availability, and secure auth — built on the MERN stack.",
+    image: stayease,
+    tags: ["MongoDB", "Express", "React", "Node.js"],
+    links: [{ label: "GitHub", href: "#" }, { label: "Live", href: "#" }],
   },
   {
     title: "Recipe Route",
@@ -68,9 +71,15 @@ const ProjectsGrid = () => {
                       </span>
                     ))}
                   </div>
-                  <a href="#" className="mt-2 font-body text-[11px] font-semibold text-accent hover:text-foreground transition-colors hoverable">
-                    View Project →
-                  </a>
+                  {(p as typeof p & { detailLink?: string }).detailLink ? (
+                    <Link to={(p as typeof p & { detailLink?: string }).detailLink!} className="mt-2 font-body text-[11px] font-semibold text-accent hover:text-foreground transition-colors hoverable">
+                      View Case Study →
+                    </Link>
+                  ) : (
+                    <a href="#" className="mt-2 font-body text-[11px] font-semibold text-accent hover:text-foreground transition-colors hoverable">
+                      View Project →
+                    </a>
+                  )}
                 </div>
               </div>
 

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-
+import projectSS from "@/assets/homepage.png";
 const commands: Record<string, string> = {
   help: `Available commands:\n  whoami   — about me\n  skills   — tech stack\n  projects — my work\n  contact  — reach me\n  clear    — clear terminal`,
   whoami: `Preksha Salvi\nB.E. Computer Engineering @ SPIT Mumbai (CSE '27)\nFull Stack Developer + UI/UX Designer\nMERN Stack | Java | Python | Figma`,
