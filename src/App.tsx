@@ -7,6 +7,8 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import BrainTumorProject from "./pages/BrainTumorProject.tsx";
 import ResumeAnalyzerProject from "./pages/ResumeAnalyzerProject.tsx";
+import WellSphereProject from "./pages/wellsphere/WellSphereProject.tsx";
+import MIndicatorProject from "./pages/MIndicatorCaseStudy.tsx";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +22,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/brain-tumor-detection" element={<BrainTumorProject />} />
           <Route path="/resume-analyzer" element={<ResumeAnalyzerProject />} />
+          <Route path="/wellsphere" element={<WellSphereProject />} />
+          <Route path="/m-indicator" element={<MIndicatorProject />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

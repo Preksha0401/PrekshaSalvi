@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 import mindicator from "@/assets/uiux-indicator.png";
 import stayease from "@/assets/stayease.jpg";
 import shopping from "@/assets/shopping.jpg";
@@ -14,9 +15,10 @@ const projects = [
     device: "mobile",
     tags: ["Figma", "UX Audit", "Redesign", "Mobile", "Navigation"],
     links: [
-      { label: "Figma", href: "#" },
-      { label: "Assignment", href: "#" },
+      { label: "Figma", href: "https://www.figma.com/design/vBuXLqrRjmbtMcK0A8Xlpr/M-INDICATOR-Enhanced-SEM5?node-id=0-1&t=YQS1arnSJiLDHYjd-1", isInternal: false },
+      { label: "Case Study", href: "/m-indicator", isInternal: true },
     ],
+    detailLink: "/m-indicator",
   },
   {
     title: "ShopLens",
@@ -25,7 +27,7 @@ const projects = [
     image: shopping,
     device: "laptop",
     tags: ["Figma", "Dashboard", "Design System", "Wireframing"],
-    links: [{ label: "Figma", href: "#" }, { label: "Project", href: "#" }],
+    links: [{ label: "Figma", href: "#", isInternal: false }, { label: "Project", href: "#", isInternal: false }],
   },
   {
     title: "WanderPlan",
@@ -34,7 +36,7 @@ const projects = [
     image: stayease,
     device: "mobile",
     tags: ["Figma", "User Research", "Interaction Design", "Travel"],
-    links: [{ label: "Figma", href: "#" }, { label: "Project", href: "#" }],
+    links: [{ label: "Figma", href: "#", isInternal: false }, { label: "Project", href: "#", isInternal: false }],
   },
 ];
 const ProjectsGrid = () => {
@@ -77,9 +79,15 @@ const ProjectsGrid = () => {
                       </span>
                     ))}
                   </div>
-                  <a href="#" className="mt-2 font-body text-[11px] font-semibold text-accent hover:text-foreground transition-colors hoverable">
-                    View Project →
-                  </a>
+                  {p.detailLink ? (
+                    <Link to={p.detailLink} className="mt-2 font-body text-[11px] font-semibold text-accent hover:text-foreground transition-colors hoverable">
+                      View Case Study →
+                    </Link>
+                  ) : (
+                    <a href="#" className="mt-2 font-body text-[11px] font-semibold text-accent hover:text-foreground transition-colors hoverable">
+                      View Project →
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -88,10 +96,17 @@ const ProjectsGrid = () => {
                 <p className="font-body text-[15px] text-muted-foreground leading-relaxed mb-3.5">{p.desc}</p>
                 <div className="flex gap-2">
                   {p.links.map((l) => (
-                    <a key={l.label} href={l.href} className="font-body text-[12px] font-semibold text-accent px-3.5 py-1.5 rounded-md border border-border transition-all duration-200 hover:border-accent hoverable text-[12px] md:text-[13px]"
-                      style={{ background: "hsla(306,55%,33%,0.07)" }}>
-                      {l.label}
-                    </a>
+                    l.isInternal ? (
+                      <Link key={l.label} to={l.href} className="font-body text-[12px] font-semibold text-accent px-3.5 py-1.5 rounded-md border border-border transition-all duration-200 hover:border-accent hoverable text-[12px] md:text-[13px]"
+                        style={{ background: "hsla(306,55%,33%,0.07)" }}>
+                        {l.label}
+                      </Link>
+                    ) : (
+                      <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="font-body text-[12px] font-semibold text-accent px-3.5 py-1.5 rounded-md border border-border transition-all duration-200 hover:border-accent hoverable text-[12px] md:text-[13px]"
+                        style={{ background: "hsla(306,55%,33%,0.07)" }}>
+                        {l.label}
+                      </a>
+                    )
                   ))}
                 </div>
               </div>
