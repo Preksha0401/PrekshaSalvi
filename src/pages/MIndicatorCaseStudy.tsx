@@ -558,7 +558,6 @@ const Heuristics = () => {
   );
 };
 
-
 // ── User Flows ────────────────────────────────────────────────────────────────
 const FlowCard = ({ mod }) => {
   const [tab, setTab] = useState("flow");
@@ -692,7 +691,7 @@ const UserFlows = () => {
             const Icon = m.icon;
             return (
               <motion.button key={m.id} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} onClick={() => setActive(i)} style={{
-                display: "flex", alignItems: "center", gap: 7, borderRadius: 10, padding: "8px 16px", border: "none",
+                display: "flex", alignItems: "center", gap: 7, borderRadius: 10, padding: "8px 16px",
                 background: active === i ? `${m.color}20` : "rgba(255,255,255,0.05)",
                 border: active === i ? `1px solid ${m.color}50` : "1px solid rgba(255,255,255,0.07)",
                 color: active === i ? "#fff" : "rgba(255,255,255,0.4)",
@@ -931,7 +930,7 @@ const TestingResults = () => {
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 28 }}>
           {testResults.map((r, i) => (
             <button key={r.module} onClick={() => setSel(i)} style={{
-              display: "flex", alignItems: "center", gap: 7, borderRadius: 10, padding: "8px 16px", border: "none",
+              display: "flex", alignItems: "center", gap: 7, borderRadius: 10, padding: "8px 16px",
               background: sel === i ? "rgba(34,197,94,0.12)" : "rgba(255,255,255,0.05)",
               border: sel === i ? "1px solid rgba(34,197,94,0.4)" : "1px solid rgba(255,255,255,0.07)",
               color: sel === i ? "#fff" : "rgba(255,255,255,0.4)",

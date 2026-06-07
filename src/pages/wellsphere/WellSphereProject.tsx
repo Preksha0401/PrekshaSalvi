@@ -486,7 +486,7 @@ const MessAttendance = () => {
         <div className="mb-6">
           <div className="mb-1.5 flex justify-between text-xs text-white/50"><span>Dinner</span><span className="text-amber-300">Live</span></div>
           <div className="h-2 overflow-hidden rounded-full bg-white/[0.07]">
-            <div className="h-full rounded-full transition-all duration-[1200ms] ease-out"
+            <div className="h-full rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${dinnerWidth}%`, background: "linear-gradient(to right,#a78bfa,#818cf8)" }} />
           </div>
         </div>
@@ -545,7 +545,7 @@ const HealthCheckin = () => {
         <div className="rounded-xl border border-white/[0.07] bg-white/[0.03] p-4">
           <p className="mb-3 text-[10px] uppercase tracking-[0.14em] text-white/35">AI Risk Score</p>
           <div className="mb-3 h-2 overflow-hidden rounded-full bg-white/[0.07]">
-            <div className="h-full rounded-full transition-all duration-[1500ms] ease-out"
+            <div className="h-full rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${riskWidth}%`, background: "linear-gradient(to right,#34d399,#fbbf24,#f97316)" }} />
           </div>
           <div className="flex items-baseline justify-between">

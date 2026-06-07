@@ -16,11 +16,12 @@ const projects = [
     detailLink: "/brain-tumor-detection",
   },
   {
-    title: "StayEase",
-    desc: "A full-featured stay booking web app with property listings, real-time availability, and secure auth — built on the MERN stack.",
+    title: "WellSphere",
+    desc: "AI-powered smart campus and hostel health intelligence for early risk detection, mess feedback analysis, and warden alerts.",
     image: stayease,
-    tags: ["MongoDB", "Express", "React", "Node.js"],
-    links: [{ label: "GitHub", href: "#" }, { label: "Live", href: "#" }],
+    tags: ["Vue.js", "FastAPI", "PostgreSQL", "AI/ML"],
+    links: [],
+    detailLink: "/wellsphere",
   },
   {
     title: "Recipe Route",
@@ -50,7 +51,8 @@ const ProjectsGrid = () => {
               initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="glass-panel overflow-hidden group hoverable transition-all duration-300 hover:-translate-y-1.5"
+              whileHover={{ y: -8, rotateX: 1.5 }}
+              className="glass-panel overflow-hidden group hoverable transition-all duration-300"
               style={{ boxShadow: "0 3px 20px hsla(306,55%,33%,0.07)" }}
             >
               {/* Image — always visible */}
@@ -84,9 +86,20 @@ const ProjectsGrid = () => {
               </div>
 
               <div className="p-5">
-                <h3 className="font-display text-[25px] font-bold text-foreground mb-2">{p.title}</h3>
+                {(p as typeof p & { detailLink?: string }).detailLink ? (
+                  <Link to={(p as typeof p & { detailLink?: string }).detailLink!} className="hoverable">
+                    <h3 className="font-display text-[25px] font-bold text-foreground mb-2 transition-colors group-hover:text-accent">{p.title}</h3>
+                  </Link>
+                ) : (
+                  <h3 className="font-display text-[25px] font-bold text-foreground mb-2">{p.title}</h3>
+                )}
                 <p className="font-body text-[15px] text-muted-foreground leading-relaxed mb-3.5">{p.desc}</p>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
+                  {(p as typeof p & { detailLink?: string }).detailLink && (
+                    <Link to={(p as typeof p & { detailLink?: string }).detailLink!} className="font-body text-[12px] font-semibold text-accent px-3.5 py-1.5 rounded-md border border-accent/60 transition-all duration-200 hover:border-accent hover:bg-accent/10 hoverable text-[12px] md:text-[13px]">
+                      Case Study
+                    </Link>
+                  )}
                   {p.links.map((l) => (
                     <a key={l.label} href={l.href} className="font-body text-[12px] font-semibold text-accent px-3.5 py-1.5 rounded-md border border-border transition-all duration-200 hover:border-accent hoverable text-[12px] md:text-[13px]"
                       style={{ background: "hsla(306,55%,33%,0.07)" }}>
