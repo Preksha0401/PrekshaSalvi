@@ -12,7 +12,7 @@ const projects = [
     desc: "AI-powered medical imaging using deep learning (CNN) to detect and classify brain tumors from MRI scans with high accuracy.",
     image: braintumor,
     tags: ["Python", "TensorFlow", "CNN", "OpenCV"],
-    links: [{ label: "GitHub", href: "#" }, { label: "Demo", href: "#" }],
+    links: [{ label: "GitHub", href: "https://github.com/Shambhavi-Bhalekar/Mini-Project" }],
     detailLink: "/brain-tumor-detection",
   },
   {
@@ -20,7 +20,7 @@ const projects = [
     desc: "AI-powered smart campus and hostel health intelligence for early risk detection, mess feedback analysis, and warden alerts.",
     image: stayease,
     tags: ["Vue.js", "FastAPI", "PostgreSQL", "AI/ML"],
-    links: [],
+    links: [{ label: "GitHub", href: "https://github.com/alfiyakarbhari/WellSphere" }],
     detailLink: "/wellsphere",
   },
   {
@@ -28,7 +28,7 @@ const projects = [
     desc: "A robust REST API backend for discovering, saving, and sharing recipes — full CRUD operations with clean documentation.",
     image: reciperoute,
     tags: ["Node.js", "Express", "MongoDB", "REST API"],
-    links: [{ label: "GitHub", href: "#" }, { label: "Docs", href: "#" }],
+    links: [{ label: "GitHub", href: "#" }],
   },
 ];
 
