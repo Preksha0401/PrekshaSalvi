@@ -8,6 +8,7 @@ import {
   SiJsonwebtokens,
   SiNumpy,
   SiPandas,
+  SiGithub,        
   SiPostgresql,
   SiPython,
   SiScikitlearn,
@@ -39,6 +40,18 @@ import {
   Video,
 } from "lucide-react";
 import CustomCursor from "@/components/CustomCursor";
+import img1 from "../../assets/WellsphereHomepage.png";
+import img2 from "../../assets/Warden1.png";
+import img3 from "../../assets/masteradmin.png";
+import img4 from "../../assets/masteradmin.png";
+
+const screenshots = [
+  img1,
+  img2,
+  img3,
+  img4,
+];
+
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type LucideIcon = typeof Activity;
@@ -558,12 +571,91 @@ const HealthCheckin = () => {
   );
 };
 
+// const ScreenshotsSection = () => {
+//   const [current, setCurrent] = useState(0);
+//   const prev = () => setCurrent((c) => (c - 1 + screenshotSlides.length) % screenshotSlides.length);
+//   const next = () => setCurrent((c) => (c + 1) % screenshotSlides.length);
+
+//   const slideContents = [<WardenDashboard key="w" />, <MessAttendance key="m" />, <HealthCheckin key="h" />];
+
+//   return (
+//     <motion.section
+//       id="screenshots"
+//       className="relative border-y border-emerald-200/10 px-5 py-24 md:px-10"
+//       style={{ background: "rgba(6,18,15,0.9)" }}
+//       initial="hidden"
+//       whileInView="visible"
+//       viewport={sectionViewport}
+//     >
+//       <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={gridBg} />
+//       <div className="container relative">
+//         <motion.div variants={fadeUp} className="mb-14 text-center">
+//           <p className="font-mono text-xs uppercase tracking-[0.28em] text-violet-200/80">Interface</p>
+//           <h2 className="mt-3 font-display text-5xl md:text-6xl">Screenshots</h2>
+//           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-emerald-50/55">
+//             Live UI mockups showing the warden dashboard, QR attendance, and student health check-in flows.
+//           </p>
+//         </motion.div>
+
+//         <motion.div variants={fadeUp}>
+//           <div className="relative overflow-hidden">
+//             <AnimatePresence mode="wait">
+//               <motion.div
+//                 key={current}
+//                 initial={{ opacity: 0, x: 40, scale: 0.98 }}
+//                 animate={{ opacity: 1, x: 0, scale: 1 }}
+//                 exit={{ opacity: 0, x: -40, scale: 0.98 }}
+//                 transition={{ duration: 0.4, ease: "easeOut" }}
+//               >
+//                 <BrowserFrame url={screenshotSlides[current].url}>
+//                   {slideContents[current]}
+//                 </BrowserFrame>
+//               </motion.div>
+//             </AnimatePresence>
+//           </div>
+
+//           <div className="mt-8 flex items-center justify-between">
+//             <div>
+//               <p className="font-display text-lg font-semibold text-white">{screenshotSlides[current].tag}</p>
+//               <p className="text-sm text-white/40">{screenshotSlides[current].subtitle}</p>
+//             </div>
+//             <div className="flex items-center gap-4">
+//               <div className="flex items-center gap-2">
+//                 {screenshotSlides.map((_, i) => (
+//                   <button key={i} onClick={() => setCurrent(i)}
+//                     className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-violet-400" : "w-2 bg-white/20 hover:bg-white/40"}`} />
+//                 ))}
+//               </div>
+//               <div className="flex gap-2">
+//                 <button onClick={prev}
+//                   className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-all hover:border-violet-400/50 hover:bg-violet-400/10 hover:text-white">
+//                   <ArrowLeft size={16} />
+//                 </button>
+//                 <button onClick={next}
+//                   className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-all hover:border-violet-400/50 hover:bg-violet-400/10 hover:text-white">
+//                   <ArrowRight size={16} />
+//                 </button>
+//               </div>
+//             </div>
+//           </div>
+//         </motion.div>
+//       </div>
+//     </motion.section>
+//   );
+// };
+// ─── SCREENSHOTS CAROUSEL (using real imported images) ────────────────────────
+
 const ScreenshotsSection = () => {
   const [current, setCurrent] = useState(0);
-  const prev = () => setCurrent((c) => (c - 1 + screenshotSlides.length) % screenshotSlides.length);
-  const next = () => setCurrent((c) => (c + 1) % screenshotSlides.length);
+  const prev = () => setCurrent((c) => (c - 1 + screenshots.length) % screenshots.length);
+  const next = () => setCurrent((c) => (c + 1) % screenshots.length);
 
-  const slideContents = [<WardenDashboard key="w" />, <MessAttendance key="m" />, <HealthCheckin key="h" />];
+  const slideLabels = [
+    { tag: "WellSphere Homepage",      subtitle: "Landing & Overview",        url: "wellsphere.app/home",           accent: "#14b8a6" },
+    { tag: "Warden Dashboard",         subtitle: "Risk Command Center",        url: "wellsphere.app/warden",         accent: "#f97316" },
+    { tag: "Master Admin Panel",       subtitle: "System-Wide Controls",       url: "wellsphere.app/admin",          accent: "#a78bfa" },
+    { tag: "Master Admin Overview",    subtitle: "Analytics & Management",     url: "wellsphere.app/admin/overview", accent: "#34d399" },
+  ];
 
   return (
     <motion.section
@@ -576,50 +668,77 @@ const ScreenshotsSection = () => {
     >
       <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={gridBg} />
       <div className="container relative">
+        {/* Header */}
         <motion.div variants={fadeUp} className="mb-14 text-center">
           <p className="font-mono text-xs uppercase tracking-[0.28em] text-violet-200/80">Interface</p>
           <h2 className="mt-3 font-display text-5xl md:text-6xl">Screenshots</h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-emerald-50/55">
-            Live UI mockups showing the warden dashboard, QR attendance, and student health check-in flows.
+            Real screens from the WellSphere platform — homepage, warden dashboard, and admin panel.
           </p>
         </motion.div>
 
+        {/* Browser frame + image */}
         <motion.div variants={fadeUp}>
-          <div className="relative overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current}
-                initial={{ opacity: 0, x: 40, scale: 0.98 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -40, scale: 0.98 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-              >
-                <BrowserFrame url={screenshotSlides[current].url}>
-                  {slideContents[current]}
-                </BrowserFrame>
-              </motion.div>
-            </AnimatePresence>
+          <div className="overflow-hidden rounded-2xl border border-emerald-200/15 bg-[#061210] shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
+            {/* Browser chrome */}
+            <div className="flex items-center gap-2 border-b border-emerald-200/[0.08] bg-[#071312]/90 px-5 py-3">
+              <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+              <div className="h-3 w-3 rounded-full bg-[#febc2e]" />
+              <div className="h-3 w-3 rounded-full bg-[#28c840]" />
+              <div className="mx-3 flex-1 rounded-md bg-white/[0.06] px-3 py-1.5 font-mono text-[11px] text-white/35">
+                {slideLabels[current].url}
+              </div>
+            </div>
+
+            {/* Animated image */}
+            <div className="relative w-full overflow-hidden bg-[#04100e]">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={current}
+                  src={screenshots[current]}
+                  alt={slideLabels[current].tag}
+                  initial={{ opacity: 0, x: 40, scale: 0.98 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -40, scale: 0.98 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="w-full object-cover object-top"
+                  style={{ maxHeight: "520px" }}
+                />
+              </AnimatePresence>
+            </div>
           </div>
 
+          {/* Controls row */}
           <div className="mt-8 flex items-center justify-between">
             <div>
-              <p className="font-display text-lg font-semibold text-white">{screenshotSlides[current].tag}</p>
-              <p className="text-sm text-white/40">{screenshotSlides[current].subtitle}</p>
+              <p className="font-display text-lg font-semibold text-white">{slideLabels[current].tag}</p>
+              <p className="text-sm text-white/40">{slideLabels[current].subtitle}</p>
             </div>
             <div className="flex items-center gap-4">
+              {/* Dot indicators */}
               <div className="flex items-center gap-2">
-                {screenshotSlides.map((_, i) => (
-                  <button key={i} onClick={() => setCurrent(i)}
-                    className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-violet-400" : "w-2 bg-white/20 hover:bg-white/40"}`} />
+                {screenshots.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrent(i)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      i === current ? "w-6 bg-violet-400" : "w-2 bg-white/20 hover:bg-white/40"
+                    }`}
+                  />
                 ))}
               </div>
+              {/* Arrow buttons */}
               <div className="flex gap-2">
-                <button onClick={prev}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-all hover:border-violet-400/50 hover:bg-violet-400/10 hover:text-white">
+                <button
+                  onClick={prev}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-all hover:border-violet-400/50 hover:bg-violet-400/10 hover:text-white"
+                >
                   <ArrowLeft size={16} />
                 </button>
-                <button onClick={next}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-all hover:border-violet-400/50 hover:bg-violet-400/10 hover:text-white">
+                <button
+                  onClick={next}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/60 transition-all hover:border-violet-400/50 hover:bg-violet-400/10 hover:text-white"
+                >
                   <ArrowRight size={16} />
                 </button>
               </div>
@@ -706,14 +825,14 @@ const DemoSection = () => (
           The frame is ready for your real MP4 walkthrough and already reads from the public demo video slot.
         </p>
       </div>
-      <motion.div
-        whileHover={{ y: -6 }}
-        className="rounded-xl border border-emerald-200/15 bg-[#061210] p-3 shadow-2xl shadow-emerald-950/40"
-      >
+<motion.div
+  whileHover={{ y: -6 }}
+  className="w-full max-w-6xl rounded-xl border border-emerald-200/15 bg-[#061210] p-3 shadow-2xl shadow-emerald-950/40"
+>
         <div className="overflow-hidden rounded-lg border border-emerald-200/10 bg-[#071312]">
           <BrowserTopBar title="demo-video" />
           <div className="bg-black">
-            <video className="aspect-video w-full object-cover" src="/demo.mp4" controls playsInline preload="metadata" />
+            <video className="aspect-video w-full object-cover" src="/WellSphere.mp4" controls playsInline preload="metadata" />
           </div>
         </div>
         <div className="mx-auto h-4 w-1/3 rounded-b-lg bg-emerald-200/10" />
@@ -743,26 +862,47 @@ const WellSphereProject = () => {
 
       {/* ── Header ── */}
       <header
-        className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between px-5 transition-all duration-300 md:px-10"
-        style={{
-          background: scrolled ? "rgba(4,16,14,0.88)" : "transparent",
-          backdropFilter: scrolled ? "blur(18px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(98,255,210,0.12)" : "1px solid transparent",
-        }}
-      >
-        <Link to="/" className="flex items-center gap-2 text-sm font-semibold text-emerald-50/70 transition hover:text-white">
-          <ArrowLeft size={16} />
-          Portfolio
-        </Link>
-        <span className="hidden font-mono text-[10px] uppercase tracking-[0.28em] text-emerald-200/70 sm:block">
-          WellSphere
-        </span>
-        <a href="#demo"
-          className="flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-xs font-semibold text-emerald-100 transition hover:border-emerald-200/60 hover:bg-emerald-300/15">
-          <Video size={14} />
-          Demo
-        </a>
-      </header>
+  className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between px-5 transition-all duration-300 md:px-10"
+  style={{
+    background: scrolled ? "rgba(4,16,14,0.88)" : "transparent",
+    backdropFilter: scrolled ? "blur(18px)" : "none",
+    borderBottom: scrolled
+      ? "1px solid rgba(98,255,210,0.12)"
+      : "1px solid transparent",
+  }}
+>
+  <Link
+    to="/"
+    className="flex items-center gap-2 text-sm font-semibold text-emerald-50/70 transition hover:text-white"
+  >
+    <ArrowLeft size={16} />
+    Portfolio
+  </Link>
+
+  <span className="hidden font-mono text-[10px] uppercase tracking-[0.28em] text-emerald-200/70 sm:block">
+    WellSphere
+  </span>
+
+  <div className="flex items-center gap-2">
+    <a
+      href="https://github.com/alfiyakarbhari/WellSphere"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-xs font-semibold text-white/70 transition hover:border-white/40 hover:bg-white/10 hover:text-white"
+    >
+      <SiGithub size={14} />
+      GitHub
+    </a>
+
+    <a
+      href="#demo"
+      className="flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-xs font-semibold text-emerald-100 transition hover:border-emerald-200/60 hover:bg-emerald-300/15"
+    >
+      <Video size={14} />
+      Demo
+    </a>
+  </div>
+</header>
 
       <main className="relative z-10">
 
